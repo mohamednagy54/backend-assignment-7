@@ -1,6 +1,6 @@
 const express = require('express')
 const { connectDB, sequelize } = require('./db')
-const { userRouter } = require('./modules')
+const { userRouter, postRouter, commentRouter } = require('./modules')
 
 const PORT = 3000
 const app = express()
@@ -11,6 +11,8 @@ connectDB()
 sequelize.sync()
 
 app.use('/users', userRouter)
+app.use('/posts', postRouter)
+app.use('/comments', commentRouter)
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
